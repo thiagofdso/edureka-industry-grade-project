@@ -28,7 +28,7 @@ pipeline {
 
         stage('install podman using ansible'){
             steps {
-                sh 'ansible-playbook -i inventario_local.ini install_podman.yml'
+                sh 'ansible-playbook -i inventario_local.ini podman.yml'
             }
         }
         stage('Build Docker Image'){
