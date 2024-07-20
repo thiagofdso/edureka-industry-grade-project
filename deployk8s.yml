@@ -4,12 +4,6 @@
   gather_facts: no
   tasks:
 
-    - name: Authenticate to EKS cluster
-      command: aws eks update-kubeconfig --name eks-edureka-2uj0t0V6 --insecure
-      register: eks_auth
-      failed_when: eks_auth.rc != 0
-      changed_when: false
-
     - name: Apply Kubernetes deployment
       command: kubectl apply -f /var/lib/jenkins/workspace/ci/k8s/deployment.yml
       register: deploy_output
