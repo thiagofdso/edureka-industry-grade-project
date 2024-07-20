@@ -25,6 +25,12 @@ pipeline {
                 sh 'mvn package'
             }
         }
+
+        stage('install podman using ansible'){
+            steps {
+                sh 'ansible-playbook -i inventario_local.ini install_podman.yml'
+            }
+        }
         stage('Build Docker Image'){
             steps {
                 sh 'cp /var/lib/jenkins/workspace/$JOB_NAME/target/ABCtechnologies-1.0.war abc_tech.war'

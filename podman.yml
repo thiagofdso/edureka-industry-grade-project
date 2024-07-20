@@ -1,0 +1,9 @@
+---
+- name: Instalar Podman no RHEL
+  hosts: local
+  become: yes
+  tasks:
+    - name: Instalar Podman
+      yum:
+        name: podman
+        state: present
