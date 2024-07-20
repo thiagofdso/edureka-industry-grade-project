@@ -1,0 +1,31 @@
+---
+- name: Deploy application to EKS cluster
+  hosts: local
+  gather_facts: no
+  tasks:
+
+    - name: Authenticate to EKS cluster
+      command: aws eks update-kubeconfig --name eks-edureka
+      register: eks_auth
+      failed_when: eks_auth.rc != 0
+      changed_when: false
+
+    - name: Apply Kubernetes deployment
+      command: kubectl apply -f /var/lib/jenkins/workspace/ci/k8s/deployment.yml
+      register: deploy_output
+      failed_when: deploy_output.rc != 0
+      changed_when: false
+
+    - name: Apply Kubernetes service
+      command: kubectl apply -f /var/lib/jenkins/workspace/ci/k8s/service.yml
+      register: service_output
+      failed_when: service_output.rc != 0
+      changed_when: false
+
+    - name: Display deployment output
+      debug:
+        msg: "{{ deploy_output.stdout }}"
+
+    - name: Display service output
+      debug:
+        msg: "{{ service_output.stdout }}"

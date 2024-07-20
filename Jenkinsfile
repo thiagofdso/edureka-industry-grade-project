@@ -53,5 +53,10 @@ pipeline {
                 sh 'podman run -itd -P thiagofdso/abc_tech:$BUILD_NUMBER'
             }
         }
+        stage('Deploy to kubernetes'){
+            steps {
+                sh 'ansible-playbook -i inventario_local.ini deployk8s.yml'
+            }
+        }
     }
 }
