@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Code Checkout') {
             steps {
-                git 'https://github.com/thiagofdso/edureka-industry-grade-project.git''
+                git 'https://github.com/thiagofdso/edureka-industry-grade-project.git'
             }
         }
 
