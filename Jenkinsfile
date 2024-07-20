@@ -44,6 +44,8 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
                         sh 'podman login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD docker.io'
                         sh 'podman push thiagofdso/abc_tech:$BUILD_NUMBER'
+                        sh 'podman tag thiagofdso/abc_tech:$BUILD_NUMBER thiagofdso/abc_tech:latest'
+                        sh 'podman push thiagofdso/abc_tech:latest'
                     }
                 }
             }
