@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: abc-app
-        image: jsachdev07/abc_tech:latest
+        image: thiagofdso/abc_tech:latest
         ports:
         - containerPort: 8080
