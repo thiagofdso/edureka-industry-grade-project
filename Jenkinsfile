@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Build Docker Image'){
             steps {
-                sh 'cp/var/lib/jenkins/workspace/$JOB_NAME/target/ABCtechnologies-1.0.war abc_tech.war'
+                sh 'cp /var/lib/jenkins/workspace/$JOB_NAME/target/ABCtechnologies-1.0.war abc_tech.war'
                 sh 'podman build -t abc_tech:$BUILD_NUMBER .'
                 sh 'podman tag abc_tech:$BUILD_NUMBER thiagofdso/abc_tech:$BUILD_NUMBER'
             }
